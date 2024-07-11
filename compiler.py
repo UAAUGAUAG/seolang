@@ -1,3 +1,5 @@
+from os.path import isfile as exist
+
 prompt = ['개', '서', '아', '아이', '우', '코', '현']
 
 while True:
@@ -8,7 +10,7 @@ while True:
 
     if not dir[0] == "stand":
         raise SyntaxError
-    if not dir[1].endswith(".standhw"):
+    if not (dir[1].endswith(".standhw") and exist(dir[1])):
         raise FileNotFoundError
     code = open(dir[1], 'r', encoding="UTF8")
     code = code.readline()
