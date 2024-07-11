@@ -26,13 +26,13 @@ while True:
         if i == "서":
             var *= 2
         if i == "현":
-            var -= 1
+            var = 0
         if i == "우":
             var += 1
         if i == "아":
             print(chr(var), end="")
         if i == "개":
-            var = 0
+            var -= 1
         if i == "아이":
             pass
     print()
