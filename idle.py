@@ -1,6 +1,6 @@
 from os import system as cmd
 
-prompt = ['개', '딱', '서', '아', '아이', '우', '코', '현']
+functions = ['개', '딱', '서', '아', '아이', '우', '코', '현']
 
 while True:
     l = []
@@ -17,7 +17,7 @@ while True:
         l.append(i)
     l.pop()
     l.pop()
-    if not all(i in prompt for i in l): # 이상한 글자 있으면
+    if not all(i in functions for i in l): # 이상한 글자 있으면
         raise SyntaxError
     for i in l:
         if i == "코":

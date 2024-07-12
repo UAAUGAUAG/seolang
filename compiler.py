@@ -1,7 +1,7 @@
 from os.path import isfile as exist
 from os import system as cmd
 
-prompt = ['개', '딱', '서', '아', '아이', '우', '코', '현']
+functions = ['개', '딱', '서', '아', '아이', '우', '코', '현']
 
 while True:
     l = []
@@ -10,22 +10,28 @@ while True:
     string = ""
 
     dir = input().split()
-
-    if not dir[0] == "stand":
-        raise SyntaxError
-    if not (dir[1].endswith(".standhw") and exist(dir[1])):
+    # 예외 처리
+    if exist(dir[1]):
+        code = open(dir[1], 'r', encoding="UTF8")
+        code = code.readline()
+    else:
         raise FileNotFoundError
-    code = open(dir[1], 'r', encoding="UTF8")
-    code = code.readline()
+    if dir[0] != "stand":
+        raise SyntaxError
+    if not dir[1].endswith(".standhw"):
+        raise ValueError
+    if len(dir) != 2:
+        raise SyntaxError
     if not (code.startswith("코") and code.endswith("아이")): # 코드의 시작과 끝이 "코"와 "아이"가 아니면
         raise SyntaxError
     if code.count("코") != 1 or code.count("아이") != 1: # 코드에 "코"나 "아이"가 한 개가 아니면
         raise SyntaxError
+
     for i in code:
         l.append(i)
     l.pop()
     l.pop()
-    if not all(i in prompt for i in l):  # 이상한 글자 있으면
+    if not all(i in functions for i in l):  # 이상한 글자 있으면
         raise SyntaxError
     for i in l:
         if i == "코":
