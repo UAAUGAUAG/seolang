@@ -1,10 +1,13 @@
 from os.path import isfile as exist
+from os import system as cmd
 
-prompt = ['개', '서', '아', '아이', '우', '코', '현']
+prompt = ['개', '딱', '서', '아', '아이', '우', '코', '현']
 
 while True:
     l = []
+    what = []
     var = 0
+    string = ""
 
     dir = input().split()
 
@@ -22,6 +25,8 @@ while True:
         l.append(i)
     l.pop()
     l.pop()
+    if not all(i in prompt for i in l):  # 이상한 글자 있으면
+        raise SyntaxError
     for i in l:
         if i == "코":
             pass
@@ -33,8 +38,15 @@ while True:
             var += 1
         if i == "아":
             print(chr(var), end="")
+            string += str(chr(var))
         if i == "개":
             var -= 1
+        if i == "딱":
+            f = open("temp.py", 'w', encoding="UTF8")
+            f.write(string)
+            f.close()
+            cmd("python temp.py")
+            cmd("del temp.py")
         if i == "아이":
             pass
     print()
