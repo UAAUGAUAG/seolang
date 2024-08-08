@@ -1,10 +1,8 @@
 from os import system as cmd
 
-functions = ['개', '딱', '서', '아', '아이', '우', '코', '현']
+functions = ['개', '딱', '서', '아', '우', '현']
 
 while True:
-    l = []
-    what = []
     var = 0
     string = ""
 
@@ -13,15 +11,10 @@ while True:
         raise SyntaxError
     if code.count("코") != 1 or code.count("아이") != 1: # 코드에 "코"나 "아이"가 한 개가 아니면
         raise SyntaxError
-    for i in code:
-        l.append(i)
-    l.pop()
-    l.pop()
-    if not all(i in functions for i in l): # 이상한 글자 있으면
+    code = code[1:-2]
+    if not (all(i in functions for i in code) or code == ""): # 이상한 글자 있으면
         raise SyntaxError
-    for i in l:
-        if i == "코":
-            pass
+    for i in code:
         if i == "서":
             var *= 2
         if i == "현":
@@ -39,6 +32,4 @@ while True:
             f.close()
             cmd("python temp.py")
             cmd("del temp.py")
-        if i == "아이":
-            pass
     print()
